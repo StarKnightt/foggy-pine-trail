@@ -133,7 +133,7 @@ export async function run(opts, body) {
   if (!(await reachable(url))) {
     clearTimeout(watchdog);
     console.error(`✗ nothing is serving ${url}.`);
-    console.error('  Start the dev server first, in its own terminal:  npm run dev');
+    console.error('  Start the dev server first, in its own terminal:  pnpm dev');
     console.error('  (One dev server, port 3100. The harness will not start a second one.)');
     process.exitCode = 1;
     return { errs: ['dev server not reachable'], gl: null, shaderErrors: [] };

@@ -10,7 +10,7 @@ npm-debug.log*
 *.tsbuildinfo
 next-env.d.ts
 
-# Capture harness output. Regenerable with `npm run shoot`.
+# Capture harness output. Regenerable with `pnpm shoot`.
 /shots/
 
 # Full-resolution stills and the 35 s reel, tens of megabytes each and

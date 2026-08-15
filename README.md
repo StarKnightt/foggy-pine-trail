@@ -22,8 +22,8 @@ real walker with real input — see `tools/reel.mjs` below.*
 ## Run it
 
 ```bash
-npm install
-npm run dev
+pnpm install
+pnpm dev
 ```
 
 Then open <http://localhost:3100>.
@@ -187,7 +187,7 @@ All capture attaches to an already-running dev server and tears down on every
 exit path, including throws and signals.
 
 ```bash
-npm run dev                       # required first, port 3100
+pnpm dev                          # required first, port 3100
 
 node tools/shoot.mjs <tag>        # six trail stops + down/up framings
 node tools/reel.mjs               # deterministic 35 s walk, encodes with ffmpeg
