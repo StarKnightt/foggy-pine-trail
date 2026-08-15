@@ -19,6 +19,7 @@ import { exec } from 'node:child_process';
 import fs from 'node:fs';
 import path from 'node:path';
 import http from 'node:http';
+import https from 'node:https';
 
 export const DEV_URL = process.env.TRAIL_URL || 'http://127.0.0.1:3100';
 
@@ -69,10 +70,13 @@ const CPU_ARGS = [...COMMON, '--use-gl=angle', '--use-angle=swiftshader',
   '--enable-unsafe-swiftshader', '--ignore-gpu-blocklist', '--enable-webgl',
   '--disable-lcd-text', '--js-flags=--single-threaded-gc'];
 
-/** Is the dev server already up? The harness never starts one. */
+/** Is the dev server already up? The harness never starts one. `TRAIL_URL` can
+ * point at a deployment rather than the local server, so pick the client that
+ * matches the scheme — `http.get` throws outright on an https URL. */
 export function reachable(url, timeoutMs = 2500) {
+  const client = url.startsWith('https:') ? https : http;
   return new Promise((resolve) => {
-    const req = http.get(url, { timeout: timeoutMs }, (res) => {
+    const req = client.get(url, { timeout: timeoutMs }, (res) => {
       res.resume();
       resolve(true);
     });
