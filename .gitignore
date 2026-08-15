@@ -1,0 +1,30 @@
+/node_modules
+/.next/
+/out/
+/build
+.DS_Store
+*.pem
+npm-debug.log*
+.env*
+.vercel
+*.tsbuildinfo
+next-env.d.ts
+
+# Capture harness output. Regenerable with `npm run shoot`.
+/shots/
+
+# Full-resolution stills and the 35 s reel, tens of megabytes each and
+# regenerable with `node tools/hero.mjs` and `node tools/reel.mjs`. The
+# web-sized previews committed under /docs/ are derived from these.
+/media/
+
+# Reference photographs pulled down during development for measurement only.
+# This project ships no external assets and none of these belong in it.
+/ref/
+
+/tmp/
+*.bak
+
+# Auto-generated and rewritten by `next dev`.
+/AGENTS.md
+/CLAUDE.md
