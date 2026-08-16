@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { Analytics } from '@vercel/analytics/next';
 import './globals.css';
 
 /* No `next/font`. It downloads a font file at build time, and this project
@@ -20,7 +21,15 @@ export const viewport = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className="h-full antialiased">
-      <body className="h-full overflow-hidden bg-black text-white">{children}</body>
+      <body className="h-full overflow-hidden bg-black text-white">
+        {children}
+        {/* Outside the canvas subtree on purpose. Anything mounted inside the
+          * r3f tree is reconciled by the three renderer, which has no notion of
+          * a DOM element, and the scene runs a driven frame loop that capture
+          * tools take control of — neither is a place to put a component whose
+          * job is to observe navigation. */}
+        <Analytics />
+      </body>
     </html>
   );
 }
